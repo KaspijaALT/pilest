@@ -5,91 +5,30 @@
         </h2>
     </x-slot>
 
+    <!-- Content starts here -->
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-
-                    <!-- Property Filters -->
-                    <div class="mt-6">
-                        <div class="flex flex-wrap -mx-2">
-                            <div class="p-2">
-                                <input type="text" id="filterCountry" placeholder="Country" class="w-full p-2 border rounded">
-                            </div>
-                            <!-- Other filters omitted for brevity -->
-                            <div class="p-2">
-                                <input type="number" id="filterAreaFrom" placeholder="Area From" class="w-full p-2 border rounded">
-                            </div>
-                            <div class="p-2">
-                                <input type="number" id="filterAreaTo" placeholder="Area To" class="w-full p-2 border rounded">
-                            </div>
-                            <div class="p-2">
-                                <input type="number" id="filterPriceFrom" placeholder="Price From" class="w-full p-2 border rounded">
-                            </div>
-                            <div class="p-2">
-                                <input type="number" id="filterPriceTo" placeholder="Price To" class="w-full p-2 border rounded">
-                            </div>
-                            <div class="p-2">
-                                <select id="filterNearbyParking" class="w-full p-2 border rounded">
-                                    <option value="">Nearby Parking</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                            </div>
-                            <!-- ... -->
-                            <div class="p-2">
-                                <button onclick="applyFilters()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
-                                    Apply Filters
-                                </button>
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <h1 class="font-semibold text-lg">Properties</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        @foreach ($properties as $property)
+                        <div class="rounded overflow-hidden shadow-lg">
+                            <img class="w-full" src="{{ $property->picture }}" alt="Property Image">
+                            <div class="px-6 py-4">
+                                <div class="font-bold text-xl mb-2">{{ $property->Property_type }}</div>
+                                <p class="text-gray-700 text-base">
+                                    {{ $property->country }} - Built in {{ $property->built }}
+                                </p>
+                                <p class="text-gray-700 text-base">
+                                    {{ $property->area }} sqft - ${{ number_format($property->Price, 2) }}
+                                </p>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Properties List -->
-                    <div class="mt-6">
-                        <div id="propertiesContainer" class="flex flex-wrap -mx-2">
-                            <!-- Properties will be inserted here by JavaScript -->
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        function applyFilters() {
-            // Get filter values
-            const countryFilter = document.getElementById('filterCountry').value.toLowerCase();
-            // Other filters omitted for brevity
-            const areaFrom = document.getElementById('filterAreaFrom').value;
-            const areaTo = document.getElementById('filterAreaTo').value;
-            const priceFrom = document.getElementById('filterPriceFrom').value;
-            const priceTo = document.getElementById('filterPriceTo').value;
-            const nearbyParkingFilter = document.getElementById('filterNearbyParking').value;
-
-            // Filter properties
-            const propertyCards = document.querySelectorAll('.property-card');
-            propertyCards.forEach(card => {
-                const country = card.getAttribute('data-country').toLowerCase();
-                // Other data attributes omitted for brevity
-                const area = parseInt(card.getAttribute('data-area'), 10);
-                const price = parseInt(card.getAttribute('data-price'), 10);
-                const nearbyParking = card.getAttribute('data-nearby-parking');
-
-                // Check if property matches filters
-                const matchesCountry = countryFilter === '' || country.includes(countryFilter);
-                // Other matches omitted for brevity
-                const matchesArea = (areaFrom === '' || area >= areaFrom) && (areaTo === '' || area <= areaTo);
-                const matchesPrice = (priceFrom === '' || price >= priceFrom) && (priceTo === '' || price <= priceTo);
-                const matchesNearbyParking = nearbyParkingFilter === '' || nearbyParking === nearbyParkingFilter;
-
-                // Show or hide card based on matches
-                if (matchesCountry && matchesArea && matchesPrice && matchesNearbyParking) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-    </script>
 </x-app-layout>
