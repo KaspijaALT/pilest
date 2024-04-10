@@ -5,30 +5,44 @@
         </h2>
     </x-slot>
 
-    <!-- Content starts here -->
+    <!-- Start of main container -->
     <div class="py-12">
+        <!-- Start of max-width and centering container -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h1 class="font-semibold text-lg">Properties</h1>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Flex container for filters and property grid -->
+            <div class="flex">
+                <!-- Existing Filter Sidebar code -->
+
+                <!-- Properties Grid -->
+                <div class="properties-grid flex-1">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Dynamically populated properties will go here -->
                         @foreach ($properties as $property)
-                        <div class="rounded overflow-hidden shadow-lg">
-                            <img class="w-full" src="{{ $property->picture }}" alt="Property Image">
-                            <div class="px-6 py-4">
-                                <div class="font-bold text-xl mb-2">{{ $property->Property_type }}</div>
-                                <p class="text-gray-700 text-base">
-                                    {{ $property->country }} - Built in {{ $property->built }}
-                                </p>
-                                <p class="text-gray-700 text-base">
-                                    {{ $property->area }} sqft - ${{ number_format($property->Price, 2) }}
-                                </p>
-                            </div>
-                        </div>
+                            <a href="/properties/{{ $property->id }}" class="property-card block rounded-lg p-4 shadow-sm shadow-indigo-100 bg-neutral-600">
+                                <img alt="Property Image" src="{{ $property->picture }}" class="h-56 w-full rounded-md object-cover" />
+
+                                <div class="mt-2">
+                                    <dl>
+                                        <div>
+                                            <dt class="sr-only">Price</dt>
+                                            <dd class="price-text text-sm text-white">$ {{ number_format($property->Price, 2) }}</dd>
+                                        </div>
+
+                                        <div>
+                                            <dt class="sr-only">Address</dt>
+                                            <dd class="font-medium">{{ $property->address }}</dd>
+                                        </div>
+                                    </dl>
+
+                                    <div class="mt-6 flex items-center gap-8 text-xs text-white">
+                                        <!-- Existing icons and property details -->
+                                    </div>
+                                </div>
+                            </a>
                         @endforeach
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </div> <!-- End of Properties Grid -->
+            </div> <!-- End of Flex container -->
+        </div> <!-- End of max-width and centering container -->
+    </div> <!-- End of main container -->
 </x-app-layout>
