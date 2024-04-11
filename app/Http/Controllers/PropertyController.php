@@ -9,9 +9,9 @@ class PropertyController extends Controller
 {
 
 
-    public function show($id)
-    {
-        $property = Property::findOrFail($id);
-        return view('properties.show', ['property' => $property]);
-    }
+    public function show(Property $property_ID)
+{
+    return view('properties.show', ['property' => $property_ID]);
+}
+
 }

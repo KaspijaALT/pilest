@@ -37,4 +37,8 @@ class Property extends Model
 
         return null; // Return null or a default image path if no image is available
     }
+    public function getRouteKeyName()
+{
+    return 'property_ID'; // This should match the actual column name in your database
+}
 }

@@ -1,15 +1,17 @@
 {{-- resources/views/properties/show.blade.php --}}
+<x-app-layout>
+    <x-slot name="header">
+        <h2>{{ $property->name }}</h2>
+    </x-slot>
 
-@extends('layouts.app')
-
-@section('content')
-    <div class="container">
-        <h1>{{ $property->name }}</h1>
-        <p>{{ $property->description }}</p>
-        <!-- Add more property details here -->
+    <div>
+        <img src="{{ $property->picture }}" alt="Main Picture">
+        {{-- You can loop through more pictures if your model supports it --}}
         <div>
-            <img src="{{ $property->picture }}" alt="Property Image">
+            <h3>{{ $property->Property_type }}</h3>
+            <p>{{ $property->location }}, {{ $property->country }}</p>
+            <p>Price: ${{ number_format($property->Price, 0) }}</p>
+            {{-- More details about the property --}}
         </div>
-        <!-- Add additional images and details as needed -->
     </div>
-@endsection
+</x-app-layout>
