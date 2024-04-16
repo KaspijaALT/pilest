@@ -33,9 +33,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/properties/{property_ID}', [PropertyController::class, 'show'])->name('properties.show');
-    Route::get('/filters', [FilterController::class, 'show'])->name('filter');    
+    Route::get('/home/{property_ID}', [PropertyController::class, 'show'])->name('properties.show');
+    Route::get('/filters', [FilterController::class, 'show'])->name('filter');
 
+    Route::get('/properties/search', [PropertyController::class, 'search'])->name('properties.search');
 });
 
 require __DIR__ . '/auth.php';
