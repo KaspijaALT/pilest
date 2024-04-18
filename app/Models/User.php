@@ -41,5 +41,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'liked_properties' => 'array',  // Ensure liked_properties is treated as an array
     ];
+
 }

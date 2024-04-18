@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('usertype')->default('user');
             $table->rememberToken();
             $table->timestamps();
+            $table->json('liked_properties')->nullable();  // Adds a JSON type column for storing liked properties
         });
     }
 

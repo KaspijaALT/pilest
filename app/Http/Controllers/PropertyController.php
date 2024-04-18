@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Property;
 
+use Illuminate\Support\Facades\Auth;
+
 class PropertyController extends Controller
 {
     public function show($property_id)
@@ -48,5 +50,41 @@ class PropertyController extends Controller
 
         // Return a view and pass the retrieved properties to it
         return view('properties.results', compact('properties'));
+    }
+
+    public function favorites()
+    {
+        $user = Auth::user(); // Get the authenticated user
+
+        // Decode the liked properties JSON array into PHP array
+        $likedProperties = json_decode($user->liked_properties, true) ?? [];
+
+        // Retrieve the properties that are in the liked properties list
+        $properties = Property::whereIn('id', $likedProperties)->get();
+
+        // Pass the properties to the view
+        return view('properties.favorites', compact('properties'));
+    }
+
+    public function like(Request $request, $propertyId)
+    {
+        $user = Auth::user();
+        // Retrieve the existing likes from the user model
+        $likedProperties = json_decode($user->liked_properties, true) ?? [];
+
+        // Check if the property is already liked
+        if (!in_array($propertyId, $likedProperties)) {
+            // Add the property ID to the liked properties array
+            $likedProperties[] = $propertyId;
+            // Save the updated array back to the user
+            $user->liked_properties = json_encode($likedProperties);
+            $user->save();
+
+            // Return back with a success message
+            return back()->with('success', 'Property liked successfully.');
+        } else {
+            // Return back with a message that it's already liked
+            return back()->with('info', 'You have already liked this property.');
+        }
     }
 }

@@ -37,6 +37,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/filters', [FilterController::class, 'show'])->name('filter');
 
     Route::get('/properties/search', [PropertyController::class, 'search'])->name('properties.search');
+
+    Route::get('/favorites', [PropertyController::class, 'favorites'])->name('properties.favorites')->middleware('auth');
+    Route::post('/properties/{property}/like', [PropertyController::class, 'like'])->name('properties.like')->middleware('auth');
+
 });
 
 require __DIR__ . '/auth.php';
