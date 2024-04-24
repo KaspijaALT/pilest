@@ -9,14 +9,24 @@ use Illuminate\Support\Facades\Auth;
 
 class PropertyController extends Controller
 {
-    public function show($property_id)
-    {
-        // Fetch the property from the database by ID
-        $property = Property::findOrFail($property_id);
 
-        // Return the show.blade.php view with the property data
-        return view('properties.show', ['property' => $property]);
+    public function index()
+    {
+        $property = Property::all();
+
+        return view('properties.show', compact('properties'));
     }
+
+    public function show(Property $property)
+    {
+        //dd($property); // Check if $property contains data
+        return view('properties.show', compact('property'));
+    }
+
+
+
+    
+    
     public function search(Request $request)
     {
         // Start the query

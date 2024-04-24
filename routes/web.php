@@ -50,13 +50,11 @@ Route::middleware('auth')->group(function () {
     })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-    //Route for the property when clicked on redirect to more detailed view
-    Route::get('/properties/{property_id}', [PropertyController::class, 'show'])
-    ->name('properties.show')
-    ->middleware('auth');
-    Route::get('/properties/{property_id}', function ($property_id) {
-        dd($property_id);
-    });
+    Route::get('/properties/{property}', [PropertyController::class, 'show'])->name('properties.show');
+
+
+
+
 
     
 
