@@ -37,8 +37,16 @@ class Property extends Model
 
         return null; // Return null or a default image path if no image is available
     }
+    // In your Property model (Property.php)
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
     public function getRouteKeyName()
-{
-    return 'property_ID'; // This should match the actual column name in your database
-}
+    {
+        return 'property_ID';
+    }
+
 }

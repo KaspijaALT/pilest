@@ -5,7 +5,7 @@
                 <div class="properties-grid flex-1">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach ($properties as $property)
-                        <a href="/properties/{{ $property->id }}" class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
+                        <a href="{{ url('/properties', $property->property_ID) }}" class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
                             <div class="shadow p-4 rounded-lg bg-white">
                                 <div class="flex justify-center relative rounded-lg overflow-hidden h-52">
                                     <img src="{{ $property->picture }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 transform ease-in-out hover:scale-110">

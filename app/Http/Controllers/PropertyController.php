@@ -12,14 +12,14 @@ class PropertyController extends Controller
 
     public function index()
     {
-        $property = Property::all();
-
+        $properties = Property::all(); // Change this line
         return view('properties.show', compact('properties'));
     }
 
+
     public function show(Property $property)
     {
-        //dd($property); // Check if $property contains data
+         // dd($property); This will dump the details of the property to see if it's correctly fetched.
         return view('properties.show', compact('property'));
     }
 

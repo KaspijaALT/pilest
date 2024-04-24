@@ -49,8 +49,13 @@ Route::middleware('auth')->group(function () {
         return view('dashboard', ['properties' => $properties]);
     })->middleware(['auth', 'verified'])->name('dashboard');
 
-
+    // working redirect to property detailed view
     Route::get('/properties/{property}', [PropertyController::class, 'show'])->name('properties.show');
+
+
+
+
+
 
 
 
