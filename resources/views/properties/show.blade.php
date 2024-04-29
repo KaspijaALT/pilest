@@ -62,6 +62,10 @@
                     <p>${{ number_format($property->Price, 2) }}</p>
                 </div>
             </div>
+            <form action="{{ route('cart.add', $property->property_ID) }}" method="POST">
+                @csrf
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Add to Cart</button>
+            </form>
         </div>
     </div>
 </x-app-layout>
