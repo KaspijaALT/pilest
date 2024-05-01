@@ -1,3 +1,4 @@
+{{-- When property card clicked on ir redirects to a different page for detailed property view where you can add it to cart and pay via stripe--}}
 <x-app-layout>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <!-- Back link to properties list (if you have a list view) -->
@@ -7,7 +8,7 @@
             <div class="mb-6">
                 <!-- Property Image -->
                 @if($property->picture)
-                    <img src="{{ asset('storage/' . $property->picture) }}" class="w-full h-64 object-cover" alt="Property Image">
+                    <img src="{{ $property->picture }}" class="w-full h-64 object-cover" alt="Property Image">
                 @else
                     <div class="w-full h-64 bg-gray-300 flex justify-center items-center">
                         <span>No Image Available</span>

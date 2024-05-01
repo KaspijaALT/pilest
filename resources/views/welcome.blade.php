@@ -1,3 +1,4 @@
+{{-- The start page where you can login or sign up / go to dashboard, for now its blank--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 

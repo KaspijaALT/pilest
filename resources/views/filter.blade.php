@@ -1,3 +1,4 @@
+{{-- Page forom navbar where you can create property listing query based on filter options, it will redirect you to results page.--}}
 <x-app-layout>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-gray overflow-hidden shadow rounded-lg">

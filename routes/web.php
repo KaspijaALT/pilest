@@ -4,13 +4,14 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\FilterController;
+use App\Http\Controllers\StripePaymentController;
 
 
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\StripePaymentController;
 
 use App\Http\Controllers\HomeController;
 use App\Models\Property;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -59,12 +60,21 @@ Route::middleware('auth')->group(function () {
 
 
 
-    // stripe and checkout / cart routes       this is my 29.04 edit
+    // cart routes       this is my 29.04 edit
 
     Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
     Route::post('/cart/remove/{id}', [CartController::class, 'removeItem'])->name('cart.remove');
     Route::get('/checkout', [StripePaymentController::class, 'handleCheckout'])->name('checkout.handle');
+
+
+    //stripe routes
+
+    Route::post('/checkout/handle', [StripePaymentController::class, 'handleCheckout'])->name('checkout.handle');
+    Route::get('/payment/success', [StripePaymentController::class, 'success'])->name('success');
+    Route::get('/payment/cart', [StripePaymentController::class, 'cart'])->name('cart');
+    
+
 
 
 

@@ -10,21 +10,23 @@ class CartController extends Controller
     public function addToCart(Request $request, $id) {
         $property = Property::findOrFail($id);
         $cart = session()->get('cart', []);
-
+    
         if(isset($cart[$id])) {
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
-                "name" => $property->name,
+                "Property_type" => $property->Property_type, // Assuming 'Property_type' is the correct field name
                 "quantity" => 1,
                 "price" => $property->Price,
                 "photo" => $property->picture
             ];
         }
-
+    
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Property added to cart successfully!');
     }
+    
+    
 
     public function showCart() {
         return view('cart', ['cartItems' => session()->get('cart', [])]);

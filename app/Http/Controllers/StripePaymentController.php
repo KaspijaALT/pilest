@@ -5,33 +5,46 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
+use Stripe\Checkout\Session as StripeSession; 
 
 class StripePaymentController extends Controller
 {
-    public function handleCheckout() {
-        // Set your secret key. Remember to switch to your live secret key in production.
-        // See your keys here: https://dashboard.stripe.com/account/apikeys
-        Stripe::setApiKey(config('services.stripe.secret'));
+    public function handleCheckout()
+{
+    \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
 
-        $paymentIntent = PaymentIntent::create([
-            'amount' => $this->calculateTotal(), // Calculate the total cost in cents
-            'currency' => 'usd',
-            'payment_method_types' => ['card'],
+    $cart = session('cart');
+    if (!$cart || count($cart) === 0) {
+        return redirect()->route('cart')->with('error', 'Your cart is empty!');
+    }
+
+    $line_items = [];
+    foreach ($cart as $id => $details) {
+        $line_items[] = [
+            'price_data' => [
+                'currency' => 'USD',
+                'product_data' => [
+                    'name' => $details['Property_type'],  // Ensure this is a string and not null
+                ],
+                'unit_amount' => $details['price'] * 100,  // Convert to cents
+            ],
+            'quantity' => $details['quantity'],
+        ];
+    }
+
+    try {
+        $session = \Stripe\Checkout\Session::create([
+            'line_items' => $line_items,
+            'mode' => 'payment',
+            'success_url' => route('success'),
+            'cancel_url' => route('cart'),
         ]);
 
-        $output = [
-            'clientSecret' => $paymentIntent->client_secret,
-        ];
-
-        return view('checkout', $output);
+        return redirect()->away($session->url);
+    } catch (\Stripe\Exception\ApiErrorException $e) {
+        // Log the error or handle it according to your needs
+        return redirect()->route('cart')->with('error', 'Failed to create Stripe session: ' . $e->getMessage());
     }
+}
 
-    private function calculateTotal() {
-        $cart = session()->get('cart', []);
-        $total = 0;
-        foreach ($cart as $item) {
-            $total += $item['price'] * $item['quantity'];
-        }
-        return $total * 100; // Convert to cents
-    }
 }
