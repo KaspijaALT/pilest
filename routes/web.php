@@ -11,6 +11,7 @@ use App\Http\Controllers\CartController;
 
 use App\Http\Controllers\HomeController;
 use App\Models\Property;
+use App\Models\Picture;
 
 
 /*

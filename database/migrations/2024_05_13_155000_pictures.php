@@ -9,25 +9,24 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('pictures', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('property_id');
-            $table->unsignedBigInteger('client_id');
             $table->foreign('property_id')->references('property_ID')->on('property')->onDelete('cascade');
-            $table->foreign('client_id')->references('id')->on('users')->onDelete('cascade');
-            $table->date('OrderDate');
-            $table->string('status');
-            $table->string('Funding');
+            $table->binary('image');
+            $table->timestamp('timestamp');
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('pictures');
     }
 };

@@ -19,9 +19,17 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {
-         // dd($property); This will dump the details of the property to see if it's correctly fetched.
+        // Immediately dump the property that's resolved by route model binding
+        //dd($property);
+
+        // Assuming you have set up the relationship in your Property model as mentioned earlier,
+        // let's try to eager load the pictures and dump the result
+        $property = Property::with('pictures')->findOrFail($property->property_ID);
+
+        // If everything looks correct up to this point, continue to return the view
         return view('properties.show', compact('property'));
     }
+
 
 
 

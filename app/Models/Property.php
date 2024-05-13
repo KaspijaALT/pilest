@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Picture;
+
+
 
 class Property extends Model
 {
@@ -47,6 +50,11 @@ class Property extends Model
     public function getRouteKeyName()
     {
         return 'property_ID';
+    }
+
+    public function pictures()
+    {
+        return $this->hasMany(Picture::class, 'property_id', 'property_ID');
     }
 
 }
