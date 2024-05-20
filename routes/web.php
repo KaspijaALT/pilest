@@ -74,6 +74,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout/handle', [StripePaymentController::class, 'handleCheckout'])->name('checkout.handle');
     Route::get('/payment/success', [StripePaymentController::class, 'success'])->name('success');
     Route::get('/payment/cart', [StripePaymentController::class, 'cart'])->name('cart');
+
+
+    //new ones 20.05.2024
+    Route::get('/success', [StripePaymentController::class, 'success'])->name('success');
+    Route::get('/thankyou', function () {
+        return view('thankyou');
+    })->name('thankyou');
     
 
 
