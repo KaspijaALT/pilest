@@ -11,19 +11,6 @@
                         </span>
                     </a>
                 </div>
-
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('filter')" :active="request()->routeIs('filter')">
-                        {{ __('Filter') }}
-                    </x-nav-link>
-                </div>
-
-
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('properties.favorites')" :active="request()->routeIs('dashboard')">
-                        {{ __('Favourites') }}
-                    </x-nav-link>
-                </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <a href="{{ route('cart.show') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 transition duration-300">
                         View Cart

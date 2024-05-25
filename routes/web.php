@@ -50,10 +50,9 @@ Route::middleware('auth')->group(function () {
 
 
     // For the navbar issue when click on pilest logo and it outputs error.
-    Route::get('/dashboard', function () {
-        $properties = Property::all(); 
-        return view('dashboard', ['properties' => $properties]);
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/dashboard', [PropertyController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
     // working redirect to property detailed view
     Route::get('/properties/{property}', [PropertyController::class, 'show'])->name('properties.show');

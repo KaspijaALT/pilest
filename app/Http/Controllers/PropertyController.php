@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\Order;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -12,8 +13,13 @@ class PropertyController extends Controller
 
     public function index()
     {
-        $properties = Property::all(); // Change this line
-        return view('properties.show', compact('properties'));
+        // Get the IDs of the properties that are in the orders table
+        $orderedPropertyIds = Order::pluck('property_id');
+
+        // Fetch properties that are not in the orders table
+        $properties = Property::whereNotIn('property_ID', $orderedPropertyIds)->get();
+
+        return view('dashboard', compact('properties'));
     }
 
 
@@ -61,6 +67,14 @@ class PropertyController extends Controller
         }
         if ($request->filled('max_price')) {
             $query->where('Price', '<=', $request->max_price);
+        }
+        if ($request->filled('sort')) {
+            $sort = $request->input('sort');
+            if ($sort === 'asc') {
+                $query->orderBy('Price', 'asc');
+            } elseif ($sort === 'desc') {
+                $query->orderBy('Price', 'desc');
+            }
         }
 
         // Execute the query and get the results
