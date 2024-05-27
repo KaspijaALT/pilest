@@ -5,7 +5,7 @@
             <!-- Filter Sidebar -->
             <div class="w-full md:w-1/4 lg:w-1/4 pr-4">
                 <div class="bg-gray-100 p-6 rounded-lg shadow-lg">
-                    <h2 class="text-lg font-medium text-gray-900 mb-4">Filter Properties</h2>
+                    <h2 class="text-lg font-bold text-2xl text-gray-900 mb-4">Filter Properties</h2>
                     <form action="{{ route('properties.search') }}" method="GET" class="space-y-4">
                         <div>
                             <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
@@ -43,7 +43,7 @@
                                 <option value="desc">Price: High to Low</option>
                             </select>
                         </div>
-                        <button type="submit" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <button type="submit" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-neutral-700 hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-600">
                             Filter
                         </button>
                     </form>

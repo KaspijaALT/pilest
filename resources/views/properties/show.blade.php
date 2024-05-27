@@ -1,5 +1,6 @@
 {{-- When property card clicked on ir redirects to a different page for detailed property view where you can add it to cart and pay via stripe--}}
 <x-app-layout>
+<div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <!-- Property Details -->
         <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
@@ -66,9 +67,10 @@
             </div>
             <form action="{{ route('cart.add', $property->property_ID) }}" method="POST">
                 @csrf
-                <button type "submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Add to Cart</button>
+                <button type "submit" class="px-4 py-2 bg-neutral-700 text-white rounded hover:bg-lime-600">Add to Cart</button>
             </form>
         </div>
     </div>
+</div>
 </x-app-layout>
 
