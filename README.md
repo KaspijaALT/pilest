@@ -1,3 +1,5 @@
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -20,6 +22,13 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
+
+## Updates and Improvements
+
+1. **Language Switcher on Homepage**: A language switcher has been added to the top-right corner to enhance accessibility.
+2. **Improved About Page Layout**: The navigation bar has been moved to the left for a cleaner interface.
+3. **Broker Validation**: Introduced validation to ensure brokers upload valid identification documents, protecting users from potential fraud or coercion.
+4. **Property Ownership Progress Bar**: Added a progress bar to track how close a user is to fully owning their property, similar to a delivery tracking system.
 
 ## Learning Laravel
 
@@ -65,5 +74,11 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-## To run 
-Clone project -> "npm i" -> "composer i" -> create .env file -> run ir terminal "npm run dev" -> run in terminal "php artisan serve"
+## To Run 
+
+1. Clone the project.  
+2. Run `npm install`.  
+3. Run `composer install`.  
+4. Create a `.env` file and configure it with your environment variables.  
+5. Run `npm run dev`.  
+6. Start the Laravel server with `php artisan serve`.
