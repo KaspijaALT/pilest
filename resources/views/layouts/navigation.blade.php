@@ -17,6 +17,12 @@
                         CART
                     </span>
                 </a>
+                <a href="#" class="no-underline">
+                    <span class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200 font-bold text-2xl">
+                        ORDER
+                    </span>
+                </a>
+                <!-- ordera lapa - ideja tada, klients noperk ipasumu un order lapaa radas statuss vai progress. Cik talu makleris ir ticis. -->
             </div>
 
             <!-- Settings Dropdown -->

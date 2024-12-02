@@ -48,5 +48,10 @@
                 {{ __('Register') }}
             </x-primary-button>
         </div>
+        <!-- idea -->
+         <button class="text-white">
+            register as a broker?
+        </button>
+        <!-- maklera atlauja, dokumenti, firma, reģ. nr., piekritu datu apstradei -->
     </form>
 </x-guest-layout>
