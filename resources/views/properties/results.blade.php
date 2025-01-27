@@ -5,7 +5,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($properties as $property)
                 <div class="overflow-hidden shadow-lg rounded-lg h-90 w-60 md:w-80 cursor-pointer m-auto">
-                    <a href="/properties/{{ $property->id }}" class="w-full block h-full">
+                    <a href="/properties/{{ $property->property_ID }}" class="w-full block h-full">
                         <img alt="property image" src="{{ $property->picture }}" class="max-h-40 w-full object-cover" />
                         <div class="bg-white dark:bg-gray-800 w-full p-4">
                             <p class="text-gray-800 dark:text-white text-xl font-medium mb-2">
